@@ -1,0 +1,22 @@
+name: SMS Bot
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"  # هر 10 دقیقه یک بار اجرا می‌شود
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip install requests
+      - name: Run script
+        run: |
+          python sms.py
